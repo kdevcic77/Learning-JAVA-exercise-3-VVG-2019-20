@@ -45,6 +45,9 @@ public class Automobil extends Artikl implements Vozilo {
 	Integer brojGrupeOsiguranja = 0;
 	BigDecimal snagaKw = izracunajKilovate(getSnagaKs());
 	Integer snagaCijeliBrojKw = snagaKw.intValue();
+	if ((snagaCijeliBrojKw >= 1) && (snagaCijeliBrojKw < 55)) {
+	    return 0;
+	}
 	if ((snagaCijeliBrojKw >= 55) && (snagaCijeliBrojKw < 70)) {
 	    return 1;
 	}
@@ -54,8 +57,11 @@ public class Automobil extends Artikl implements Vozilo {
 	if ((snagaCijeliBrojKw >= 100) && (snagaCijeliBrojKw < 130)) {
 	    return 3;
 	}
-	if (snagaCijeliBrojKw >= 130) {
+	if (snagaCijeliBrojKw >= 130 && (snagaCijeliBrojKw < 240)) {
 	    return 4;
+	}
+	if (snagaCijeliBrojKw >240)  {
+	    
 	}
 	return brojGrupeOsiguranja;
     }

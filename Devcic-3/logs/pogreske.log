@@ -1,0 +1,44 @@
+2020-04-15 18:35:42,611 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 18:44:41,710 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 18:45:10,284 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 18:51:27,198 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 18:53:16,135 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 18:58:35,051 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 19:10:21,722 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 19:12:04,269 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 20:42:16,674 INFO [main] h.j.v.g.Glavna [Glavna.java:45] Pokretanje programa
+2020-04-15 20:51:15,771 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 20:53:50,937 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 20:55:22,338 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 21:00:05,460 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 21:02:52,909 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 21:14:34,323 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 21:23:20,655 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 21:24:56,147 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 21:26:38,465 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 21:43:40,691 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 21:44:10,602 ERROR [main] h.j.v.g.Glavna [Glavna.java:110] Cijena nekretnine ne smije biti manja od 10000kn
+hr.java.vjezbe.iznimke.CijenaJePreniskaException: Cijena nekretnine ne smije biti manja od 10000kn
+	at hr.java.vjezbe.entitet.Nekretnina.izracunajPorez(Nekretnina.java:13)
+	at hr.java.vjezbe.entitet.Stan.tekstOglasa(Stan.java:24)
+	at hr.java.vjezbe.glavna.Glavna.main(Glavna.java:108)
+2020-04-15 21:53:21,155 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 21:53:37,075 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 21:54:15,408 ERROR [main] h.j.v.g.Glavna [Glavna.java:110] Pogreška prilikom
+hr.java.vjezbe.iznimke.CijenaJePreniskaException: Cijena nekretnine ne smije biti manja od 10000kn
+	at hr.java.vjezbe.entitet.Nekretnina.izracunajPorez(Nekretnina.java:13)
+	at hr.java.vjezbe.entitet.Stan.tekstOglasa(Stan.java:24)
+	at hr.java.vjezbe.glavna.Glavna.main(Glavna.java:108)
+2020-04-15 22:07:52,851 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 22:08:34,887 ERROR [main] h.j.v.g.Glavna [Glavna.java:110] Non-terminating decimal expansion; no exact representable decimal result.
+java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result.
+	at java.base/java.math.BigDecimal.divide(BigDecimal.java:1722)
+	at hr.java.vjezbe.entitet.Nekretnina.izracunajPorez(Nekretnina.java:15)
+	at hr.java.vjezbe.entitet.Stan.tekstOglasa(Stan.java:24)
+	at hr.java.vjezbe.glavna.Glavna.main(Glavna.java:108)
+2020-04-15 22:09:29,488 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 22:14:16,693 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 22:14:22,571 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 22:15:40,255 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 22:15:48,558 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa
+2020-04-15 22:16:53,628 INFO [main] h.j.v.g.Glavna [Glavna.java:46] Pokretanje programa

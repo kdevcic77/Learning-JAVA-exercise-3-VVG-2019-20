@@ -15,6 +15,7 @@ import hr.java.vjezbe.entitet.Korisnik;
 import hr.java.vjezbe.entitet.PoslovniKorisnik;
 import hr.java.vjezbe.entitet.PrivatniKorisnik;
 import hr.java.vjezbe.entitet.Prodaja;
+import hr.java.vjezbe.entitet.Stan;
 import hr.java.vjezbe.entitet.Usluga;
 
 /**
@@ -166,6 +167,32 @@ public class Glavna {
     }
 
     /**
+     * Kreira novi objekt stan na temelju unosa sa tipkovnice
+     * 
+     * @param ucitavac omoguæava korisnièki unos, odnosno predstavlja Scanner objekt
+     *                 u obliku varijable koji u ovom sluèaju omoguæava korisnièki
+     *                 unos putem tipkovnice
+     * @param i        omoguæava prijenos cijelog broja kao parametra trenutnog
+     *                 indeksa polja u koji se sprema kreirani objekt kategorije
+     * @return vraæa novo kreirani objekt stan sa podacima o naslovu, opisu,
+     *         kvadraturi i cijeni stana
+     */
+    private static Stan unesiStan(Scanner ucitavac, int i) {
+	System.out.print("Unesite naslov " + i + ". oglasa stana: ");
+	String naslov = ucitavac.nextLine();
+	System.out.print("Unesite opis " + i + ". oglasa stana: ");
+	String opis = ucitavac.nextLine();
+	System.out.print("Unesite kvadraturu " + i + ". oglasa stana: ");
+	int kvadratura = ucitavac.nextInt();
+	ucitavac.nextLine();
+	System.out.print("Unesite cijenu " + i + ". oglasa stana: ");
+	BigDecimal cijena = ucitavac.nextBigDecimal();
+	ucitavac.nextLine();
+	return new Stan(naslov, opis, kvadratura, cijena);
+
+    }
+
+    /**
      * Kreira novi objekt usluga na temelju unosa sa tipkovnice
      * 
      * @param ucitavac omoguæava korisnièki unos, odnosno predstavlja Scanner objekt
@@ -239,16 +266,20 @@ public class Glavna {
 	    do {
 		k = 1;
 		System.out.println(k + ". Usluga");
-		System.out.println((k + 1) + ". Automobili");
+		System.out.println((k + 1) + ". Automobil");
+		System.out.println((k + 2) + ". Stan");
 		System.out.print("Odabir ->> ");
 		k = ucitavac.nextInt();
 		ucitavac.nextLine();
-	    } while (k != 1 && k != 2);
+	    } while (k != 1 && k != 2 && k != 3);
 	    if (k == 1) {
 		artikliKategorije[j] = unesiUslugu(ucitavac, j + 1);
 	    }
 	    if (k == 2) {
 		artikliKategorije[j] = unesiAutomobil(ucitavac, j + 1);
+	    }
+	    if (k == 3) {
+		artikliKategorije[j] = unesiStan(ucitavac, j + 1);
 	    }
 	}
 	return new Kategorija(naziv, artikliKategorije);

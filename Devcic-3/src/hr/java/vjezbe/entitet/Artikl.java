@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public abstract class Artikl {
     private String naslov;
     private String opis;
-    private BigDecimal cijena;
+    protected BigDecimal cijena;
 
     /**
      * Inicijalizira podatak o naslovu, opisu i cijeni artikla
