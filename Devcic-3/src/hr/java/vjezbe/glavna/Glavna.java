@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import hr.java.vjezbe.entitet.Artikl;
 import hr.java.vjezbe.entitet.Automobil;
 import hr.java.vjezbe.entitet.Kategorija;
@@ -17,7 +20,11 @@ import hr.java.vjezbe.entitet.Usluga;
 public class Glavna {
     private static final String FORMAT_DATUMA = "dd.MM.yyyy.";
 
+    private static final Logger logger = LoggerFactory.getLogger(Glavna.class);
+
     public static void main(String[] args) {
+
+	logger.info("Pokretanje programa");
 
 	Scanner ucitavac = new Scanner(System.in);
 
