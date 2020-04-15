@@ -17,10 +17,28 @@ import hr.java.vjezbe.entitet.PrivatniKorisnik;
 import hr.java.vjezbe.entitet.Prodaja;
 import hr.java.vjezbe.entitet.Usluga;
 
+/**
+ * Predstavlja programski dio koda koji služi za kreiranje i objavu oglasa
+ * 
+ * @author deva
+ * @version Devcic-3
+ */
 public class Glavna {
+
     private static final String FORMAT_DATUMA = "dd.MM.yyyy.";
 
     private static final Logger logger = LoggerFactory.getLogger(Glavna.class);
+
+    /**
+     * @param args predstavlja unos sa tipkovnice broja korisnika oglasnika, odabir
+     *             tipa korisnika kao i izvršavanje metode kreiranja korisnika
+     *             zavisno od odabira; takoðer predstavlja unos broja kategorija
+     *             oglasnika, te izvršavanje metode kreiranja kategorije; Nakon
+     *             unosa svih traženih podataka, potrebno je odabrati aktivne
+     *             artikle koji su za prodaju, a završetkom odabira artikala za
+     *             prodaju, trenutno aktivni oglasi se ispisuju na konzolnom ekranu
+     *             sa pripadajuæim podacima
+     */
 
     public static void main(String[] args) {
 
@@ -44,6 +62,7 @@ public class Glavna {
 		odabraniBrojTipaKorisnika = ucitavac.nextInt();
 		ucitavac.nextLine();
 	    } while (odabraniBrojTipaKorisnika != 1 && odabraniBrojTipaKorisnika != 2);
+
 	    if (odabraniBrojTipaKorisnika == 1) {
 
 		korisnici[i] = unesiPrivatnogKorisnika(ucitavac, i + 1);
@@ -83,18 +102,31 @@ public class Glavna {
 	for (int j = 0; j < 100; j++) {
 	    System.out.print("-");
 	}
-	for (Prodaja aktivnaprodaja : aktivneProdaje) {
-	    System.out.println("\n" + aktivnaprodaja.getArtikl().tekstOglasa());
-	    LocalDate datumObjave = aktivnaprodaja.getDatumObjave();
+	for (Prodaja aktivnaProdaja : aktivneProdaje) {
+	    System.out.println("\n" + aktivnaProdaja.getArtikl().tekstOglasa());
+	    LocalDate datumObjave = aktivnaProdaja.getDatumObjave();
 	    String datumObjaveString = datumObjave.format(DateTimeFormatter.ofPattern(FORMAT_DATUMA));
 	    System.out.println("Datum objave: " + datumObjaveString);
-	    System.out.println(aktivnaprodaja.getKorisnik().dohvatiKontakt());
+	    System.out.println(aktivnaProdaja.getKorisnik().dohvatiKontakt());
 	    for (int j = 0; j < 100; j++) {
 		System.out.print("-");
 	    }
 	}
     }
 
+    /**
+     * Kreira novi objekt prodaje artikla na temelju odabira korisnika, kategorije
+     * oglasa kao i pripadajuæeg artikla kategorije
+     * 
+     * @param ucitavac   omoguæava korisnièki unos, odnosno predstavlja Scanner
+     *                   objekt u obliku varijable koji u ovom sluèaju omoguæava
+     *                   korisnièki unos putem tipkovnice
+     * @param i          omoguæava prijenos cijelog broja kao parametra trenutnog
+     *                   indeksa polja u koji se sprema kreirani objekt prodaje
+     * @param korisnici  podaci o kreiranim korisnicimaa
+     * @param kategorije podaci o kreiranim kategorijama sa pripadajuæim artiklima
+     * @return vraæa novi objekt prodaje odn. oglas
+     */
     private static Prodaja unesiProdaju(Scanner ucitavac, int i, Korisnik[] korisnici, Kategorija[] kategorije) {
 	Integer redniBrojKorisnika = 0;
 	System.out.println("Odaberite korisnika: ");
@@ -133,6 +165,17 @@ public class Glavna {
 	return new Prodaja(odabraniArtikl, odabraniKorisnik, datumObjave);
     }
 
+    /**
+     * Kreira novi objekt usluga na temelju unosa sa tipkovnice
+     * 
+     * @param ucitavac omoguæava korisnièki unos, odnosno predstavlja Scanner objekt
+     *                 u obliku varijable koji u ovom sluèaju omoguæava korisnièki
+     *                 unos putem tipkovnice
+     * @param i        omoguæava prijenos cijelog broja kao parametra trenutnog
+     *                 indeksa polja u koji se sprema kreirani objekt kategorije
+     * @return vraæa novo kreirani objekt usluge sa podacima o naslovu, opisu i
+     *         cijeni usluge
+     */
     private static Usluga unesiUslugu(Scanner ucitavac, int i) {
 	System.out.print("Unesite naslov " + i + ". oglasa usluge: ");
 	String naslov = ucitavac.nextLine();
@@ -145,20 +188,43 @@ public class Glavna {
 
     }
 
-    private static Automobil unesiAutomobil(Scanner ucitavac, int j) {
-	System.out.print("Unesite naslov " + j + ". oglasa automobila: ");
+    /**
+     * Kreira novi objekt automobila na temelju unosa sa tipkovnice
+     * 
+     * @param ucitavac omoguæava korisnièki unos, odnosno predstavlja Scanner objekt
+     *                 u obliku varijable koji u ovom sluèaju omoguæava korisnièki
+     *                 unos putem tipkovnice
+     * @param i        omoguæava prijenos cijelog broja kao parametra trenutnog
+     *                 indeksa polja u koji se sprema kreirani objekt kategorije
+     * @return vraæa novo kreirani objekt automobila sa podacima o naslovu, opisu,
+     *         snazi izraženoj u konjskim snagama kao i cijenom automobila
+     */
+    private static Automobil unesiAutomobil(Scanner ucitavac, int i) {
+	System.out.print("Unesite naslov " + i + ". oglasa automobila: ");
 	String naslov = ucitavac.nextLine();
-	System.out.print("Unesite opis " + j + ". oglasa automobila: ");
+	System.out.print("Unesite opis " + i + ". oglasa automobila: ");
 	String opis = ucitavac.nextLine();
-	System.out.print("Unesite snagu (u ks) " + j + ". oglasa automobila: ");
+	System.out.print("Unesite snagu (u ks) " + i + ". oglasa automobila: ");
 	BigDecimal snagaKs = ucitavac.nextBigDecimal();
 	ucitavac.nextLine();
-	System.out.print("Unesite cijenu " + j + ". oglasa automobila: ");
+	System.out.print("Unesite cijenu " + i + ". oglasa automobila: ");
 	BigDecimal cijena = ucitavac.nextBigDecimal();
 	ucitavac.nextLine();
 	return new Automobil(naslov, opis, snagaKs, cijena);
     }
 
+    /**
+     * Kreira novi objekt kategorije na temelju unosa sa tipkovnice
+     * 
+     * @param ucitavac omoguæava korisnièki unos, odnosno predstavlja Scanner objekt
+     *                 u obliku varijable koji u ovom sluèaju omoguæava korisnièki
+     *                 unos putem tipkovnice
+     * @param i        omoguæava prijenos cijelog broja kao parametra trenutnog
+     *                 indeksa polja u koji se sprema kreirani objekt kategorije
+     * @return vraæa novo kreirani objekt kategorije sa podacima o nazivu, brojem
+     *         artikala koji spadaju u tu kategoriju, tipu artikla kao i samim
+     *         artiklima koji spadaju u tu kategoriju
+     */
     private static Kategorija unesiKategoriju(Scanner ucitavac, int i) {
 	System.out.print("Unesite naziv " + (i + 1) + ". kategorije: ");
 	String naziv = ucitavac.nextLine();
@@ -188,6 +254,18 @@ public class Glavna {
 	return new Kategorija(naziv, artikliKategorije);
     }
 
+    /**
+     * Kreira novi objekt privatnog korisnika na temelju unosa sa tipkovnice
+     * 
+     * @param ucitavac omoguæava korisnièki unos, odnosno predstavlja Scanner objekt
+     *                 u obliku varijable koji u ovom sluèaju omoguæava korisnièki
+     *                 unos putem tipkovnice
+     * @param i        omoguæava prijenos cijelog broja kao parametra trenutnog
+     *                 indeksa polja u koji se sprema kreirani objekt
+     * @return vraæa novo kreiranog privatnog korisnika sa podacima o imenu,
+     *         prezimenu, email-u i broju telefona
+     */
+
     private static PrivatniKorisnik unesiPrivatnogKorisnika(Scanner ucitavac, int i) {
 	System.out.print("Unesite ime " + i + ". osobe: ");
 	String ime = ucitavac.nextLine();
@@ -201,6 +279,18 @@ public class Glavna {
 	String telefon = ucitavac.nextLine();
 	return new PrivatniKorisnik(ime, prezime, email, telefon);
     }
+
+    /**
+     * Kreira novi objekt poslovnog korisnika na temelju unosa sa tipkovnice
+     * 
+     * @param ucitavac omoguæava korisnièki unos, odnosno predstavlja Scanner objekt
+     *                 u obliku varijable koji u ovom sluèaju omoguæava korisnièki
+     *                 unos putem tipkovnice
+     * @param i        omoguæava prijenos cijelog broja kao parametra trenutnog
+     *                 indeksa polja u koji se sprema kreirani objekt prodaje
+     * @return vraæa novo kreiranog poslovnog korisnika sa podacima o nazivu,
+     *         email-u, web stranici i broju telefona
+     */
 
     private static PoslovniKorisnik unesiPoslovnogKorisnika(Scanner ucitavac, int i) {
 	System.out.print("Unesite naziv " + i + ". tvrtke: ");

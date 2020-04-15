@@ -1,9 +1,25 @@
 package hr.java.vjezbe.entitet;
 
-public class PoslovniKorisnik extends Korisnik{
+/**
+ * Predstavlja entitet poslovnog korisnika koji je definiran nazivom, email-om,
+ * brojem telefona i web stranicom
+ * 
+ * @author deva
+ * @version Devcic-3
+ */
+public class PoslovniKorisnik extends Korisnik {
     private String naziv;
     private String web;
 
+    /**
+     * Inicijalizira poslovnog korisnika koji je definiran nazivom, web adresom,
+     * email-om brojem telefona
+     * 
+     * @param naziv   - podatak o nazivu poslovnog korisnika
+     * @param web     - podatak o web stranici poslovnog korisnika
+     * @param email   - podatak o email-u poslovnog korisnika
+     * @param telefon - podatak o broju telefona poslovnog korisnika
+     */
     public PoslovniKorisnik(String naziv, String web, String email, String telefon) {
 	super(email, telefon);
 	this.naziv = naziv;
@@ -26,9 +42,15 @@ public class PoslovniKorisnik extends Korisnik{
 	this.web = web;
     }
 
+    /**
+     * Pretvaranje pojedinaènih podataka o nazivu, email-u, broju telefona i web
+     * stranica poslovnog korisnika u znakovni niz za lakše predstavljanje kontakt
+     * podataka poslovnog korisnika prilikom objave oglasa
+     */
     @Override
     public String dohvatiKontakt() {
-	String kontaktPodaciPoslovni = ("Naziv tvrtke: "+getNaziv()+", mail: "+getEmail()+", tel: "+getTelefon()+", web: "+getWeb());
+	String kontaktPodaciPoslovni = ("Naziv tvrtke: " + getNaziv() + ", mail: " + getEmail() + ", tel: "
+		+ getTelefon() + ", web: " + getWeb());
 	return kontaktPodaciPoslovni;
     }
 
