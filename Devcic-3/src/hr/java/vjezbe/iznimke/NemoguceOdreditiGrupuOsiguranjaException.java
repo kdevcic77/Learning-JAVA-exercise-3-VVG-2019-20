@@ -16,7 +16,7 @@ public class NemoguceOdreditiGrupuOsiguranjaException extends Exception {
      * odvija normalno
      */
     public NemoguceOdreditiGrupuOsiguranjaException() {
-	super("Nije moguæe odrediti cijenu osiguranja");
+	super("Pogreška prilikom odreðivanja cijene osiguranja!");
     }
 
     /**

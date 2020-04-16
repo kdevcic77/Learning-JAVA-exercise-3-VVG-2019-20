@@ -2,6 +2,8 @@ package hr.java.vjezbe.entitet;
 
 import java.math.BigDecimal;
 
+import hr.java.vjezbe.iznimke.NemoguceOdreditiGrupuOsiguranjaException;
+
 
 /**
  * Predstavlja suèelje vozila kako bi klase koje se ne nasljeðuju implementirale
@@ -29,14 +31,14 @@ public interface Vozilo {
      *         grupe osiguranja u koje vozilo spada
      * @throws NemoguceOdreditiGrupuOsiguranjaException 
      */
-    public Integer izracunajGrupuOsiguranja();
+    public Integer izracunajGrupuOsiguranja() throws NemoguceOdreditiGrupuOsiguranjaException;
 
     /**
      * @return vraæa odreðeni iznos osiguranja za vozilo koje je potrebno platiti na
      *         temelju toga u koju grupu osiguranja vozilo pripada
      * @throws NemoguceOdreditiGrupuOsiguranjaException 
      */
-    default public BigDecimal izracunajCijenuOsiguranja() {
+    default public BigDecimal izracunajCijenuOsiguranja() throws NemoguceOdreditiGrupuOsiguranjaException {
 
 	BigDecimal iznosOsiguranja = new BigDecimal(0);
 

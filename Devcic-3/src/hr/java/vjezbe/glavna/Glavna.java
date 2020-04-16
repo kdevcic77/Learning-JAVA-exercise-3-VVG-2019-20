@@ -3,6 +3,7 @@ package hr.java.vjezbe.glavna;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
@@ -48,9 +49,8 @@ public class Glavna {
 	Scanner ucitavac = new Scanner(System.in);
 
 	System.out.print("Unesite broj korisnika koje želite unijeti: ");
-	int brojKorisnika = ucitavac.nextInt();
+	int brojKorisnika = provjeriIntBroj(ucitavac);
 	ucitavac.nextLine();
-
 	Korisnik[] korisnici = new Korisnik[brojKorisnika];
 	for (int i = 0; i < brojKorisnika; i++) {
 	    System.out.println("Unesite tip " + (i + 1) + ". korisnika");
@@ -60,7 +60,7 @@ public class Glavna {
 		System.out.println(odabraniBrojTipaKorisnika + ". Privatni");
 		System.out.println((odabraniBrojTipaKorisnika + 1) + ". Poslovni");
 		System.out.print("Odabir ->> ");
-		odabraniBrojTipaKorisnika = ucitavac.nextInt();
+		odabraniBrojTipaKorisnika = provjeriIntBroj(ucitavac);
 		ucitavac.nextLine();
 	    } while (odabraniBrojTipaKorisnika != 1 && odabraniBrojTipaKorisnika != 2);
 
@@ -80,7 +80,7 @@ public class Glavna {
 	}
 	System.out.println();
 	System.out.print("Unesite broj kategorija koje želite unijeti: ");
-	int brojKategorija = ucitavac.nextInt();
+	int brojKategorija = provjeriIntBroj(ucitavac);
 	ucitavac.nextLine();
 	Kategorija[] kategorije = new Kategorija[brojKategorija];
 
@@ -89,7 +89,7 @@ public class Glavna {
 
 	}
 	System.out.print("Unesite broj artikala koji su aktivno na prodaju: ");
-	int brojAktivnihOglasa = ucitavac.nextInt();
+	int brojAktivnihOglasa = provjeriIntBroj(ucitavac);
 	ucitavac.nextLine();
 	Prodaja[] aktivneProdaje = new Prodaja[brojAktivnihOglasa];
 
@@ -104,10 +104,10 @@ public class Glavna {
 	    System.out.print("-");
 	}
 	for (Prodaja aktivnaProdaja : aktivneProdaje) {
-	    System.out.println("\n" + aktivnaProdaja.getArtikl().tekstOglasa());
+	    System.out.print("\n" + aktivnaProdaja.getArtikl().tekstOglasa());
 	    LocalDate datumObjave = aktivnaProdaja.getDatumObjave();
 	    String datumObjaveString = datumObjave.format(DateTimeFormatter.ofPattern(FORMAT_DATUMA));
-	    System.out.println("Datum objave: " + datumObjaveString);
+	    System.out.println("\nDatum objave: " + datumObjaveString);
 	    System.out.println(aktivnaProdaja.getKorisnik().dohvatiKontakt());
 	    for (int j = 0; j < 100; j++) {
 		System.out.print("-");
@@ -135,7 +135,7 @@ public class Glavna {
 	    System.out.println((j + 1) + ". " + korisnici[j].dohvatiKontakt());
 	}
 	System.out.print("Odabir korisnika >> ");
-	redniBrojKorisnika = ucitavac.nextInt();
+	redniBrojKorisnika = provjeriIntBroj(ucitavac);
 	ucitavac.nextLine();
 	Korisnik odabraniKorisnik = korisnici[redniBrojKorisnika - 1];
 
@@ -145,7 +145,7 @@ public class Glavna {
 	    System.out.println((j + 1) + ". " + kategorije[j].getNaziv());
 	}
 	System.out.print("Odabir kategorije >> ");
-	redniBrojKategorije = ucitavac.nextInt();
+	redniBrojKategorije = provjeriIntBroj(ucitavac);
 	ucitavac.nextLine();
 	Kategorija odabranaKategorija = kategorije[redniBrojKategorije - 1];
 
@@ -158,7 +158,7 @@ public class Glavna {
 	    System.out.println((j + 1) + ". " + artikliKategorije[j].getNaslov());
 	}
 	System.out.print("Odabir artikla >> ");
-	redniBrojArtikla = ucitavac.nextInt();
+	redniBrojArtikla = provjeriIntBroj(ucitavac);
 	ucitavac.nextLine();
 	Artikl odabraniArtikl = artikliKategorije[redniBrojArtikla - 1];
 
@@ -183,10 +183,10 @@ public class Glavna {
 	System.out.print("Unesite opis " + i + ". oglasa stana: ");
 	String opis = ucitavac.nextLine();
 	System.out.print("Unesite kvadraturu " + i + ". oglasa stana: ");
-	int kvadratura = ucitavac.nextInt();
+	int kvadratura = provjeriIntBroj(ucitavac);
 	ucitavac.nextLine();
 	System.out.print("Unesite cijenu " + i + ". oglasa stana: ");
-	BigDecimal cijena = ucitavac.nextBigDecimal();
+	BigDecimal cijena = provjeriBigDecimalBroj(ucitavac);
 	ucitavac.nextLine();
 	return new Stan(naslov, opis, kvadratura, cijena);
 
@@ -209,7 +209,7 @@ public class Glavna {
 	System.out.print("Unesite opis " + i + ". oglasa usluge: ");
 	String opis = ucitavac.nextLine();
 	System.out.print("Unesite cijenu " + i + ". oglasa usluge: ");
-	BigDecimal cijena = ucitavac.nextBigDecimal();
+	BigDecimal cijena = provjeriBigDecimalBroj(ucitavac);
 	ucitavac.nextLine();
 	return new Usluga(naslov, opis, cijena);
 
@@ -235,7 +235,7 @@ public class Glavna {
 	BigDecimal snagaKs = ucitavac.nextBigDecimal();
 	ucitavac.nextLine();
 	System.out.print("Unesite cijenu " + i + ". oglasa automobila: ");
-	BigDecimal cijena = ucitavac.nextBigDecimal();
+	BigDecimal cijena = provjeriBigDecimalBroj(ucitavac);
 	ucitavac.nextLine();
 	return new Automobil(naslov, opis, snagaKs, cijena);
     }
@@ -257,7 +257,7 @@ public class Glavna {
 	String naziv = ucitavac.nextLine();
 	naziv = naziv.substring(0, 1).toUpperCase() + naziv.substring(1).toLowerCase();
 	System.out.print("Unesite broj artikala koji želite unijeti za unesenu kategoriju: ");
-	int brojArtikalaKategorije = ucitavac.nextInt();
+	int brojArtikalaKategorije = provjeriIntBroj(ucitavac);
 	ucitavac.nextLine();
 	Artikl[] artikliKategorije = new Artikl[brojArtikalaKategorije];
 	for (int j = 0; j < artikliKategorije.length; j++) {
@@ -269,7 +269,7 @@ public class Glavna {
 		System.out.println((k + 1) + ". Automobil");
 		System.out.println((k + 2) + ". Stan");
 		System.out.print("Odabir ->> ");
-		k = ucitavac.nextInt();
+		k = provjeriIntBroj(ucitavac);
 		ucitavac.nextLine();
 	    } while (k != 1 && k != 2 && k != 3);
 	    if (k == 1) {
@@ -335,5 +335,58 @@ public class Glavna {
 	String telefon = ucitavac.nextLine();
 	return new PoslovniKorisnik(naziv, email, web, telefon);
     }
-
+    /**
+     * Provjerava da li je unešen cijeli broj, te vraæa taj broj u sluèaju dobrog
+     * unosa. U sluèaju da nije unešen cijeli broj, prisiljava korisnika na ponovni
+     * unos
+     * 
+     * @param ucitavac omoguæava korisnièki unos, odnosno predstavlja Scanner objekt
+     *                 u obliku varijable koji u ovom sluèaju omoguæava korisnièki
+     *                 unos putem tipkovnice
+     * @return vraæa validirani cijeli broj nakon dobrog unosa korisnika
+     */
+    private static int provjeriIntBroj(Scanner ucitavac) {
+	boolean nastaviPetlju = false;
+	int cijeliBroj = 0;
+	do {
+	    try {
+		cijeliBroj = ucitavac.nextInt();
+		nastaviPetlju = false;
+	    } catch (InputMismatchException e) {
+		logger.info("Pogreška prilikom unosa int tipa podatka");
+		System.out.println("Morate unijeti cjelobrojnu vrijednost!");
+		System.out.print("Unesite ponovno broj: ");
+		ucitavac.nextLine();
+		nastaviPetlju = true;
+	    }
+	} while (nastaviPetlju);
+	return cijeliBroj;
+    }
+    /**
+     * Provjerava da li je unešen decimalni  broj, te vraæa taj broj u sluèaju dobrog
+     * unosa. U sluèaju da nije unešen decimalni broj, prisiljava korisnika na ponovni
+     * unos
+     * 
+     * @param ucitavac omoguæava korisnièki unos, odnosno predstavlja Scanner objekt
+     *                 u obliku varijable koji u ovom sluèaju omoguæava korisnièki
+     *                 unos putem tipkovnice
+     * @return vraæa validirani decimalni broj nakon dobrog unosa korisnika
+     */
+    private static BigDecimal provjeriBigDecimalBroj(Scanner ucitavac) {
+	boolean nastaviPetlju = false;
+	BigDecimal cijeliBroj = new BigDecimal(0);
+	do {
+	    try {
+		cijeliBroj = ucitavac.nextBigDecimal();
+		nastaviPetlju = false;
+	    } catch (InputMismatchException e) {
+		logger.info("Pogreška prilikom unosa BigDecimal tipa podatka");
+		System.out.println("Morate unijeti decimalnu vrijednost!");
+		System.out.print("Unesite ponovno cijeli broj: ");
+		ucitavac.nextLine();
+		nastaviPetlju = true;
+	    }
+	} while (nastaviPetlju);
+	return cijeliBroj;
+    }
 }

@@ -2,6 +2,11 @@ package hr.java.vjezbe.entitet;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import hr.java.vjezbe.iznimke.NemoguceOdreditiGrupuOsiguranjaException;
+
 /**
  * Predstavlja entitet vozila koji je definiran naslovom , opisom, snagom u
  * konjskim satima i cijenom
@@ -11,6 +16,7 @@ import java.math.BigDecimal;
  */
 public class Automobil extends Artikl implements Vozilo {
 
+    public static final Logger logger = (Logger) LoggerFactory.getLogger(Automobil.class);
     BigDecimal snagaKs;
 
     /**
@@ -39,9 +45,10 @@ public class Automobil extends Artikl implements Vozilo {
      * Izraèunavanje grupe osiguranja na temelju pretvorbe konjskih snaga u kilovate
      * i rangiranjem automobila u jednu od 5 grupa osiguranja zavisno od broja
      * kilovata snage vozila
+     * @throws NemoguceOdreditiGrupuOsiguranjaException 
      */
     @Override
-    public Integer izracunajGrupuOsiguranja() {
+    public Integer izracunajGrupuOsiguranja() throws NemoguceOdreditiGrupuOsiguranjaException {
 	Integer brojGrupeOsiguranja = 0;
 	BigDecimal snagaKw = izracunajKilovate(getSnagaKs());
 	Integer snagaCijeliBrojKw = snagaKw.intValue();
@@ -61,7 +68,7 @@ public class Automobil extends Artikl implements Vozilo {
 	    return 4;
 	}
 	if (snagaCijeliBrojKw >240)  {
-	    
+	    throw new NemoguceOdreditiGrupuOsiguranjaException();
 	}
 	return brojGrupeOsiguranja;
     }
@@ -72,8 +79,16 @@ public class Automobil extends Artikl implements Vozilo {
      */
     @Override
     public String tekstOglasa() {
+	
+	String izracunCijeneOsiguranja = "";
+	try {
+	    izracunCijeneOsiguranja = ("" + izracunajCijenuOsiguranja());
+	} catch (NemoguceOdreditiGrupuOsiguranjaException e) {
+	    izracunCijeneOsiguranja = ("Previše kw, ne mogu odrediti grupu osiguranja.");
+	    logger.error(e.getMessage(), e);
+	}
 	String tekstOglasa = ("Naslov automobila: " + getNaslov() + "\nOpis automobila: " + getOpis()
-		+ "\nSnaga automobila: " + getSnagaKs() + "\nCijena osiguranja " + izracunajCijenuOsiguranja()
+		+ "\nSnaga automobila: " + getSnagaKs() + "\nCijena osiguranja " + izracunCijeneOsiguranja
 		+ "\nCijena automobila: " + getCijena());
 	return tekstOglasa;
     }
