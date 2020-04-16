@@ -335,6 +335,7 @@ public class Glavna {
 	String telefon = ucitavac.nextLine();
 	return new PoslovniKorisnik(naziv, email, web, telefon);
     }
+
     /**
      * Provjerava da li je unešen cijeli broj, te vraæa taj broj u sluèaju dobrog
      * unosa. U sluèaju da nije unešen cijeli broj, prisiljava korisnika na ponovni
@@ -362,10 +363,11 @@ public class Glavna {
 	} while (nastaviPetlju);
 	return cijeliBroj;
     }
+
     /**
-     * Provjerava da li je unešen decimalni  broj, te vraæa taj broj u sluèaju dobrog
-     * unosa. U sluèaju da nije unešen decimalni broj, prisiljava korisnika na ponovni
-     * unos
+     * Provjerava da li je unešen decimalni broj, te vraæa taj broj u sluèaju dobrog
+     * unosa. U sluèaju da nije unešen decimalni broj, prisiljava korisnika na
+     * ponovni unos
      * 
      * @param ucitavac omoguæava korisnièki unos, odnosno predstavlja Scanner objekt
      *                 u obliku varijable koji u ovom sluèaju omoguæava korisnièki

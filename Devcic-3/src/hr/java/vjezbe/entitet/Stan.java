@@ -37,10 +37,11 @@ public class Stan extends Artikl implements Nekretnina {
     public void setKvadratura(int kvadratura) {
 	this.kvadratura = kvadratura;
     }
+
     /**
-     * Pretvaranje pojedinaènih podataka o naslovu, opisu, kvadraturi, izraèunatom porezu
-     * i cijeni stana u znakovni niz za lakše predstavljanje oglasa automobila;
-     * u sluèaju premale cijene nekretnine, lovi se neoznaèena iznimka
+     * Pretvaranje pojedinaènih podataka o naslovu, opisu, kvadraturi, izraèunatom
+     * porezu i cijeni stana u znakovni niz za lakše predstavljanje oglasa
+     * automobila; u sluèaju premale cijene nekretnine, lovi se neoznaèena iznimka
      */
     @Override
     public String tekstOglasa() {
