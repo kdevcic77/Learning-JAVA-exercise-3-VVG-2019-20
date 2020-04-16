@@ -1,8 +1,16 @@
 package hr.java.vjezbe.iznimke;
 
+/**
+ * Predstavlja entitet CijenaJePreniskaException koji oznaèava neoznaèenu
+ * iznimku u sluèaju kada je unešena cijena stana preniska
+ * 
+ * @author deva
+ * @version Devcic-3
+ */
 public class CijenaJePreniskaException extends RuntimeException {
 
     private static final long serialVersionUID = 2555341954833609776L;
+
     /**
      * Kreira objekt znakovnog niza sa porukom korisniku da se izvoðenje programa ne
      * odvija normalno
@@ -13,6 +21,7 @@ public class CijenaJePreniskaException extends RuntimeException {
 
     /**
      * Kreira objekt sa porukom o pogrešci
+     * 
      * @param poruka - podaci poruke o pogrešci
      */
     public CijenaJePreniskaException(String poruka) {
@@ -21,6 +30,7 @@ public class CijenaJePreniskaException extends RuntimeException {
 
     /**
      * Kreira objekt sa porukum o pogrešci kao i uzrocima pogreške
+     * 
      * @param poruka - podaci poruke o pogrešci
      * @param uzrok  - opisuje uzrok pogreške
      */
@@ -30,6 +40,7 @@ public class CijenaJePreniskaException extends RuntimeException {
 
     /**
      * Kreira objekt sa uzrocima pogreške
+     * 
      * @param uzrok - podaci o uzrocima pogreške
      */
     public CijenaJePreniskaException(Throwable uzrok) {

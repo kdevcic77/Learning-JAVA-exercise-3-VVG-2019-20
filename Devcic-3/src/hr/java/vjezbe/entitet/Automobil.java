@@ -45,7 +45,10 @@ public class Automobil extends Artikl implements Vozilo {
      * Izraèunavanje grupe osiguranja na temelju pretvorbe konjskih snaga u kilovate
      * i rangiranjem automobila u jednu od 5 grupa osiguranja zavisno od broja
      * kilovata snage vozila
-     * @throws NemoguceOdreditiGrupuOsiguranjaException 
+     * 
+     * @throws NemoguceOdreditiGrupuOsiguranjaException - kada je broj kilovata veæi
+     *                                                  od 240 baca se oznaèena
+     *                                                  iznimka
      */
     @Override
     public Integer izracunajGrupuOsiguranja() throws NemoguceOdreditiGrupuOsiguranjaException {
@@ -67,7 +70,7 @@ public class Automobil extends Artikl implements Vozilo {
 	if (snagaCijeliBrojKw >= 130 && (snagaCijeliBrojKw < 240)) {
 	    return 4;
 	}
-	if (snagaCijeliBrojKw >240)  {
+	if (snagaCijeliBrojKw > 240) {
 	    throw new NemoguceOdreditiGrupuOsiguranjaException();
 	}
 	return brojGrupeOsiguranja;
@@ -75,11 +78,12 @@ public class Automobil extends Artikl implements Vozilo {
 
     /**
      * Pretvaranje pojedinaènih podataka o naslovu, opisu, snage, cijene osiguranja
-     * i cijene automobila u znakovni niz za lakše predstavljanje oglasa automobila
+     * i cijene automobila u znakovni niz za lakše predstavljanje oglasa automobila;
+     * u sluèaju prevelikog broja kilovata automobila, lovi se oznaèena iznimka
      */
     @Override
     public String tekstOglasa() {
-	
+
 	String izracunCijeneOsiguranja = "";
 	try {
 	    izracunCijeneOsiguranja = ("" + izracunajCijenuOsiguranja());

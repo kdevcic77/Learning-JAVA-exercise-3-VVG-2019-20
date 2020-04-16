@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 import hr.java.vjezbe.iznimke.NemoguceOdreditiGrupuOsiguranjaException;
 
-
 /**
  * Predstavlja suèelje vozila kako bi klase koje se ne nasljeðuju implementirale
  * zajednièku skupinu metoda
@@ -29,14 +28,20 @@ public interface Vozilo {
      * @return svi entiteti koji koriste suèelje Vozilo moraju implementirati
      *         izraèunavanje grupe osiguranja putem vraæanja cjelobrojne vrijednosti
      *         grupe osiguranja u koje vozilo spada
-     * @throws NemoguceOdreditiGrupuOsiguranjaException 
+     * @throws NemoguceOdreditiGrupuOsiguranjaException - u sluèaju prevelikog broja
+     *                                                  kilivata, baca se greška da
+     *                                                  nije moguæe odrediti grupu
+     *                                                  osiguranja
      */
     public Integer izracunajGrupuOsiguranja() throws NemoguceOdreditiGrupuOsiguranjaException;
 
     /**
      * @return vraæa odreðeni iznos osiguranja za vozilo koje je potrebno platiti na
      *         temelju toga u koju grupu osiguranja vozilo pripada
-     * @throws NemoguceOdreditiGrupuOsiguranjaException 
+     * @throws NemoguceOdreditiGrupuOsiguranjaException - u sluèaju prevelikog broja
+     *                                                  kilivata, baca se greška da
+     *                                                  nije moguæe odrediti grupu
+     *                                                  osiguranja
      */
     default public BigDecimal izracunajCijenuOsiguranja() throws NemoguceOdreditiGrupuOsiguranjaException {
 
@@ -59,7 +64,7 @@ public interface Vozilo {
 	case 4:
 	    iznosOsiguranja = new BigDecimal(1500);
 	    break;
-	}   
+	}
 	return iznosOsiguranja;
 
     }

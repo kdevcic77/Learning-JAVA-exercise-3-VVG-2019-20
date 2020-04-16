@@ -21,6 +21,7 @@ public class NemoguceOdreditiGrupuOsiguranjaException extends Exception {
 
     /**
      * Kreira objekt sa porukom o pogrešci
+     * 
      * @param poruka - podaci poruke o pogrešci
      */
     public NemoguceOdreditiGrupuOsiguranjaException(String poruka) {
@@ -29,6 +30,7 @@ public class NemoguceOdreditiGrupuOsiguranjaException extends Exception {
 
     /**
      * Kreira objekt sa porukum o pogrešci kao i uzrocima pogreške
+     * 
      * @param poruka - podaci poruke o pogrešci
      * @param uzrok  - opisuje uzrok pogreške
      */
@@ -38,6 +40,7 @@ public class NemoguceOdreditiGrupuOsiguranjaException extends Exception {
 
     /**
      * Kreira objekt sa uzrocima pogreške
+     * 
      * @param uzrok - podaci o uzrocima pogreške
      */
     public NemoguceOdreditiGrupuOsiguranjaException(Throwable uzrok) {
