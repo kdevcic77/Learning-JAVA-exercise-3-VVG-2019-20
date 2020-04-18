@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import hr.java.vjezbe.iznimke.NemoguceOdreditiGrupuOsiguranjaException;
 
 /**
- * Predstavlja entitet vozila koji je definiran naslovom , opisom, snagom u
+ * Predstavlja entitet Automobil koji je definiran naslovom , opisom, snagom u
  * konjskim satima i cijenom
  * 
  * @author deva
